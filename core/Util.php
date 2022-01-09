@@ -2,10 +2,23 @@
 
 class Util {
 
-    static function redirect ($url) {
+    static function redirect ($subPath) {
 
-        header("Location: /pia/upload/" . $url);
+        self::print("Redireccion a: " . $subPath);
+        header("Location: /pia/upload/" . $subPath);
         die();
+    }
+
+    static function getParam ($name) {
+
+        $value = NULL;
+        if (isset($_GET[$name]) && $_GET[$name] != NULL) {
+            $value = $_GET[$name];
+        }
+        if ($value == NULL && isset($_POST[$name]) && $_POST[$name] != NULL) {
+            $value = $_POST[$name];
+        }
+        return $value;
     }
 
     static function print ($message = "") {

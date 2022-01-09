@@ -8,7 +8,6 @@ body, body * {
 	font-family: Lato;
 	justify-content: center;
 	margin: 0px;
-	overflow: hidden;
 	padding: 0px;
 }
 
@@ -47,10 +46,23 @@ form > *, .vertical > * {
 
 .three-positions > * {
 	align-content: flex-end;
-	flex: 0 0 200px;
+	flex: 0 1 500px;
 	margin-left: 15px;
 }
 
 .img-max-size {
 	max-width: 100%;
+}
+
+.all-screen {
+	max-width: 80%;
+}
+
+.right-side {
+	max-width: 18%;
+}
+
+img {
+	max-height: 800px;
+	max-width: 800px;
 }
