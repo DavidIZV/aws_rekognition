@@ -21,4 +21,4 @@ $filename = __DIR__ . '/originales/' . $imageName; // '*** Path to and Name of t
 
 $s3 = BucketClient::upload ( $s3, $bucket, $keyname, $filename );
 
-Util::redirect ( "bucket-analizar.php" );
+Util::redirect ( "view-bucket-analizar.php" );

@@ -24,7 +24,7 @@ foreach ($cdir as $key => $value) {
 			<h3>Choose an image to upload to your Bucket</h3>
 			<div class="three-positions">
     			<?php foreach ( $filesInDirectory as $value ) { ?>
-    				<a href="./bucket-subir.php?toupload=<?=$value?>">
+    				<a href="./logic-bucket-subir.php?toupload=<?=$value?>">
     					<img class="img-max-size" src="./originales/<?=$value?>" />
     				</a>
     			<?php }	?>

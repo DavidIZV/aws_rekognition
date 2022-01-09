@@ -11,7 +11,7 @@
 
 		<div>
 			<form enctype="multipart/form-data" method="POST"
-				action="./subir.php">
+				action="./logic-local-subir.php">
 
 				<h1>Upload image</h1>
 
