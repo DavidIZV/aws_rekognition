@@ -2,85 +2,86 @@
 
 class Uploader {
 
-	static private function isUploadedFile($name) {
+    static private function isUploadedFile ($name) {
 
-		return isset ( $_FILES [$name] );
-	}
+        return isset($_FILES[$name]);
+    }
 
-	static private function isValidUploadedFile($file) {
+    static private function isValidUploadedFile ($file) {
 
-		$result = true;
+        $result = true;
 
-		$error = $file ['error'];
+        $error = $file['error'];
 
-		$name = $file ['name'];
+        $name = $file['name'];
 
-		$size = $file ['size'];
+        $size = $file['size'];
 
-		$tmp_name = $file ['tmp_name'];
+        $tmp_name = $file['tmp_name'];
 
-		$type = $file ['type'];
+        $type = $file['type'];
 
-		if ($error != 0 || $name == '' || $size == 0 || strpos ( $type, 'image/' ) === false || ! is_uploaded_file ( $tmp_name )) {
+        if ($error != 0 || $name == '' || $size == 0 ||
+                strpos($type, 'image/') === false ||
+                ! is_uploaded_file($tmp_name)) {
 
-			$result = false;
-		} else {
+            $result = false;
+        } else {
 
-			$mcType = mime_content_type ( $tmp_name );
+            $mcType = mime_content_type($tmp_name);
 
-			if (strpos ( $mcType, 'image/' ) === false) {
+            if (strpos($mcType, 'image/') === false) {
 
-				$result = false;
-			}
-		}
+                $result = false;
+            }
+        }
 
-		return $result;
-	}
+        return $result;
+    }
 
-	static private function moveFile($file) {
+    static private function moveFile ($file) {
 
-		$target = './originales';
+        $target = './originales';
 
-		Util::createDirIfNotExists ( $target );
+        Util::createDirIfNotExists($target);
 
-		$uniqueName = uniqid ( 'image_' );
+        $uniqueName = uniqid('image_');
 
-		$name = $file ['name'];
+        $name = $file['name'];
 
-		$extension = pathinfo ( $name, PATHINFO_EXTENSION );
+        $extension = pathinfo($name, PATHINFO_EXTENSION);
 
-		$tmp_name = $file ['tmp_name'];
+        $tmp_name = $file['tmp_name'];
 
-		$uploadedFile = $target . '/' . $uniqueName . '.' . $extension;
+        $uploadedFile = $target . '/' . $uniqueName . '.' . $extension;
 
-		if (move_uploaded_file ( $tmp_name, $uploadedFile )) {
+        if (move_uploaded_file($tmp_name, $uploadedFile)) {
 
-			return [
-					$uploadedFile,
-					$uniqueName . '.' . $extension,
-					$uniqueName,
-					$extension
-			];
-		}
+            return [
+                    $uploadedFile,
+                    $uniqueName . '.' . $extension,
+                    $uniqueName,
+                    $extension
+            ];
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	static function uploadFile($paramName) {
+    static function uploadFile ($paramName) {
 
-		if (! self::isUploadedFile ( $paramName )) {
+        if (! self::isUploadedFile($paramName)) {
 
-			return false;
-		}
+            return false;
+        }
 
-		$file = $_FILES [$paramName];
+        $file = $_FILES[$paramName];
 
-		if (! self::isValidUploadedFile ( $file )) {
+        if (! self::isValidUploadedFile($file)) {
 
-			return false;
-		}
+            return false;
+        }
 
-		return self::moveFile ( $file );
-	}
-
+        return self::moveFile($file);
+    }
 }
