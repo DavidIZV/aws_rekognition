@@ -1,20 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;1,300&display=swap');
 
 body, body * {
-	align-content: center;
+	align-content: flex-start;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	font-family: Lato;
 	justify-content: center;
-	margin: 10px;
+	margin: 0px;
 	overflow: hidden;
-	padding: 10px;
+	padding: 0px;
 }
 
 body {
-	height: 100vh;
-	width: 100vw;
+	height: 96vh;
+	padding: 1%;
+	width: 98%;
 }
 
 section {
@@ -23,6 +24,10 @@ section {
 
 form, .vertical {
 	flex-direction: column;
+}
+
+form > *, .vertical > * {
+	margin-top: 15px;
 }
 
 .btn {
@@ -36,11 +41,16 @@ form, .vertical {
 	font-size: 16px;
 }
 
-.three-positions > * {
-	flex: 0 0 30%;
-	max-width: 30%;
+.three-positions {
+	width: 100%;
 }
 
-.img-500 {
-	flex: 0 0 500px;
+.three-positions > * {
+	align-content: flex-end;
+	flex: 0 0 200px;
+	margin-left: 15px;
+}
+
+.img-max-size {
+	max-width: 100%;
 }

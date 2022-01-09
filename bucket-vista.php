@@ -25,7 +25,7 @@ foreach ($cdir as $key => $value) {
 			<div class="three-positions">
     			<?php foreach ( $filesInDirectory as $value ) { ?>
     				<a href="./bucket-subir.php?toupload=<?=$value?>">
-    					<img class="img-500" src="./originales/<?=$value?>" />
+    					<img class="img-max-size" src="./originales/<?=$value?>" />
     				</a>
     			<?php }	?>
 			</div>
