@@ -35,3 +35,13 @@ form, .vertical {
 	display: inline-block;
 	font-size: 16px;
 }
+
+.three-positions > * {
+	flex: 0 0 30%;
+	max-width: 30%;
+}
+
+.img-500 {
+	flex: 0 0 500px;
+	max-width: 500px;
+}
