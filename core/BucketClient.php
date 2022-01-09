@@ -22,7 +22,7 @@ class BucketClient {
 
     static function upload ($s3, $bucket, $keyname, $filename) {
 
-        $result = self::createMultipart($s3, $bucket, $keyname, $filename);
+        $result = self::createMultipart($s3, $bucket, $keyname);
         Util::print($result);
         $uploadId = $result['UploadId'];
 
@@ -36,7 +36,7 @@ class BucketClient {
         return $result;
     }
 
-    static private function createMultipart ($s3, $bucket, $keyname, $filename) {
+    static private function createMultipart ($s3, $bucket, $keyname) {
 
         $result = $s3->createMultipartUpload(
                 [
@@ -56,23 +56,23 @@ class BucketClient {
 
         try {
             $file = fopen($filename, 'r');
-            if (! feof($file)) {
+            $partNumber = 1;
+            while (! feof($file)) {
                 $result = $s3->uploadPart(
                         [
                                 'Bucket' => $bucket,
                                 'Key' => $keyname,
                                 'UploadId' => $uploadId,
-                                'PartNumber' => 1,
+                                'PartNumber' => $partNumber,
                                 'Body' => fread($file, 5 * 1024 * 1024)
                         ]);
-                $parts['Parts'][1] = [
-                        'PartNumber' => 1,
+                $parts['Parts'][$partNumber] = [
+                        'PartNumber' => $partNumber,
                         'ETag' => $result['ETag']
                 ];
 
-                Util::print("Uploading part {1} of {$filename}." . PHP_EOL);
-            } else {
-                Util::print("No pudimos leer el fichero." . PHP_EOL);
+                Util::print("Uploading part {$partNumber} of {$filename}.");
+                $partNumber ++;
             }
         } catch (S3Exception $e) {
             $result = $s3->abortMultipartUpload(
@@ -82,7 +82,7 @@ class BucketClient {
                             'UploadId' => $uploadId
                     ]);
 
-            Util::print("Upload of {$filename} failed." . PHP_EOL);
+            Util::print("Upload of {$filename} failed.");
         } finally {
             fclose($file);
         }
@@ -103,7 +103,7 @@ class BucketClient {
                 ]);
         $url = $result['Location'];
 
-        Util::print("Uploaded {$filename} to {$url}." . PHP_EOL);
+        Util::print("Uploaded {$filename} to {$url}.");
 
         return $result;
     }
