@@ -34,6 +34,7 @@ nav.menu ul li a:hover {
 
 section {
 	padding: 2%;
+	width: 96%;
 }
 
 form, .vertical {
@@ -80,4 +81,12 @@ form > *, .vertical > * {
 img {
 	max-height: 400px;
 	max-width: 400px;
+}
+
+.none {
+	display: none;
+}
+
+.full {
+	width: 100%;
 }
