@@ -12,9 +12,24 @@ body, body * {
 }
 
 body {
-	height: 96vh;
-	padding: 1%;
-	width: 98%;
+	min-height: 96vh;
+	width: 100vw;
+}
+
+nav.menu, nav.menu ul {
+	background-color: black;
+	flex: 0 0 100%;
+}
+
+nav.menu ul li a {
+	color: white;
+	margin-left: 15px;
+	padding: 2px 20px;
+	text-decoration: none;
+}
+
+nav.menu ul li a:hover {
+	background-color: grey;
 }
 
 section {
@@ -26,7 +41,7 @@ form, .vertical {
 }
 
 form > *, .vertical > * {
-	margin-top: 15px;
+	margin-top: 30px;
 }
 
 .btn {
@@ -63,6 +78,6 @@ form > *, .vertical > * {
 }
 
 img {
-	max-height: 800px;
-	max-width: 800px;
+	max-height: 400px;
+	max-width: 400px;
 }

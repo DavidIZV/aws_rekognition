@@ -18,6 +18,8 @@ foreach ($cdir as $key => $value) {
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+	
+	<?php require './nav.php'; ?>
 
 	<section>
 		<div class="vertical">

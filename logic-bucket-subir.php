@@ -17,7 +17,7 @@ $imageName = $_GET["toupload"];
 
 $bucket = 'aws-bucket-php-dawid';
 $keyname = $imageName;
-$filename = __DIR__ . '\\originales\\' . $imageName;
+$filename = __DIR__ . '/originales/' . $imageName;
 
 $s3 = BucketClient::upload($s3, $bucket, $keyname, $filename);
 

@@ -6,10 +6,12 @@
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+	
+	<?php require './nav.php'; ?>
 
 	<section>
 
-		<div>
+		<div class="vertical">
 			<form enctype="multipart/form-data" method="POST"
 				action="./logic-local-subir.php">
 

@@ -3,7 +3,7 @@ require './autoload.php';
 
 $filesInDirectory = array();
 $imageName = Util::getParam("toanalyze");
-$filename = __DIR__ . '\\originales\\' . $imageName;
+$filename = __DIR__ . '/originales/' . $imageName;
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
@@ -26,6 +26,8 @@ $faces = Mapper::translateDataAws($analysis);
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+	
+	<?php require './nav.php'; ?>
 
 	<section>
 		<div class="vertical">
