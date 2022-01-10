@@ -23,13 +23,15 @@ $faces = Mapper::translateDataAws($analysis);
 <head>
 <meta charset="UTF-8">
 <title>Uploaded</title>
-<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./statics/style.css">
 <link rel="stylesheet" href="https://unpkg.com/jcrop/dist/jcrop.css">
 <script src="https://unpkg.com/jcrop" type="text/javascript"></script>
 </head>
 <body>
-	
-	<?php require './nav.php'; ?>
+
+<?php
+require './nav.php';
+?>
 
 	<section>
 		<div class="vertical">
@@ -42,7 +44,7 @@ $faces = Mapper::translateDataAws($analysis);
 			<p><?=var_dump($faces[0]->array())?></p>
 		</div>
 	</section>
-	
+
 	<div class="none">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
 		<script src="./statics/aws-jcrop.js" type="text/javascript"></script>

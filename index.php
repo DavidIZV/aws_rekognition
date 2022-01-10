@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Uploaded</title>
-<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./statics/style.css">
 </head>
 <body>
-	
-	<?php require './nav.php'; ?>
+
+<?php
+require './nav.php';
+?>
 
 	<section>
 
