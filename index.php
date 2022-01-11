@@ -7,15 +7,12 @@
 </head>
 <body>
 
-<?php
-require './nav.php';
-?>
+<?php require './nav.php'; ?>
 
 	<section>
 
-		<div class="vertical">
-			<form enctype="multipart/form-data" method="POST"
-				action="./logic-local-subir.php">
+		<div class="w-100">
+			<form enctype="multipart/form-data" method="POST" action="./logic-local-subir.php" >
 
 				<h1>Upload image</h1>
 

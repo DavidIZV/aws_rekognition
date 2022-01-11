@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;1,300&display=swap');
 
 body, body * {
+	align-items: center;
 	align-content: flex-start;
+	align-self: flex-start;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -12,6 +14,7 @@ body, body * {
 }
 
 body {
+	background-color: rgb(239 239 239);
 	min-height: 96vh;
 	width: 100vw;
 }
@@ -22,8 +25,10 @@ nav.menu, nav.menu ul {
 }
 
 nav.menu ul li a {
+	align-content: center;
 	color: white;
 	margin-left: 15px;
+	min-height:30px;
 	padding: 2px 20px;
 	text-decoration: none;
 }
@@ -37,16 +42,55 @@ section {
 	width: 96%;
 }
 
+.w-20 {
+	flex: 1 1 20%;
+}
+
+.w-50 {
+	flex: 1 1 50%;
+}
+
+.w-80 {
+	flex: 1 1 80%;
+}
+
+.w-100 {
+	flex: 0 0 100%;
+}
+
+img {
+	max-height: 400px;
+	max-width: 400px;
+}
+
 form, .vertical {
+	align-content: center;
 	flex-direction: column;
 }
 
 form > *, .vertical > * {
+	width: 100%;
 	margin-top: 30px;
 }
 
+form > *.w-20, .vertical > *.w-20 {
+	width: 20%;
+}
+
+form > *.w-50, .vertical > *.w-50 {
+	width: 50%;
+}
+
+form > *.w-80, .vertical > *.w-80 {
+	width: 80%;
+}
+
+form > *.w-100, .vertical > *.w-100 {
+	width: 100%;
+}
+
 .btn {
-	background-color: #4CAF50; /* Green */
+	background-color: #4CAF50;
 	border: none;
 	color: white;
 	padding: 15px 32px;
@@ -56,37 +100,15 @@ form > *, .vertical > * {
 	font-size: 16px;
 }
 
-.three-positions {
-	width: 100%;
+.gallery {
+	justify-content: space-around;
 }
 
-.three-positions > * {
-	align-content: flex-end;
-	flex: 0 1 500px;
-	margin-left: 15px;
-}
-
-.img-max-size {
-	max-width: 100%;
-}
-
-.all-screen {
-	max-width: 80%;
-}
-
-.right-side {
-	max-width: 18%;
-}
-
-img {
-	max-height: 400px;
-	max-width: 400px;
+.gallery > * {
+	margin-left: 20px;
+	margin-bottom: 20px;
 }
 
 .none {
 	display: none;
-}
-
-.full {
-	width: 100%;
 }

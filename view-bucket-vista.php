@@ -19,26 +19,18 @@ foreach ($cdir as $key => $value) {
 </head>
 <body>
 
-<?php
-require './nav.php';
-?>
+<?php require './nav.php'; ?>
 
 	<section>
-		<div class="vertical">
-			<h3>Choose an image to upload to your Bucket</h3>
-			<div class="three-positions">
-    			<?php
-
-foreach ($filesInDirectory as $value) {
-        ?>
-    				<a href="./logic-bucket-subir.php?toupload=<?=$value?>">
-    					<img class="img-max-size" src="./originales/<?=$value?>" />
-    				</a>
-    			<?php
-
-}
-    ?>
-			</div>
+		<div class="vertical w-100">
+			<h3 class="w-100">Choose an image to upload to your Bucket</h3>
+			<div class="w-100 gallery">
+        		<?php foreach ($filesInDirectory as $value) { ?>
+        		<a href="./logic-bucket-subir.php?toupload=<?=$value?>">
+					<img src="./originales/<?=$value?>" />
+				</a>
+        		<?php } ?>
+    		</div>
 		</div>
 	</section>
 

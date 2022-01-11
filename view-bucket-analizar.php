@@ -29,18 +29,16 @@ $faces = Mapper::translateDataAws($analysis);
 </head>
 <body>
 
-<?php
-require './nav.php';
-?>
+<?php require './nav.php'; ?>
 
 	<section>
-		<div class="vertical">
-			<h3>Image to analyze</h3>
-			<div class="all-screen">
-				<img id="myimage" class="img-max-size" src="./originales/<?=$imageName?>" />
+		<div class="w-80 gallery">
+			<h3 class="w-100">Image to analyze</h3>
+			<div class="w-100">
+				<img id="myimage" src="./originales/<?=$imageName?>" />
 			</div>
 		</div>
-		<div class="vertical right-side">
+		<div class="w-20">
 			<p><?=var_dump($faces[0]->array())?></p>
 		</div>
 	</section>
