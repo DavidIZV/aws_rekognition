@@ -1,6 +1,6 @@
 <?php
 $filesInDirectory = array();
-$dir = './originales';
+$dir = './../originales';
 $cdir = scandir($dir);
 foreach ($cdir as $key => $value) {
     if ($value != '..' and $value != '.') {
@@ -15,19 +15,19 @@ foreach ($cdir as $key => $value) {
 <head>
 <meta charset="UTF-8">
 <title>Uploaded</title>
-<link rel="stylesheet" href="./statics/style.css">
+<link rel="stylesheet" href="./../statics/style.css">
 </head>
 <body>
 
-<?php require './nav.php'; ?>
+<?php require './../nav.php'; ?>
 
 	<section>
 		<div class="vertical w-100">
 			<h3 class="w-100">Choose an image to upload to your Bucket</h3>
 			<div class="w-100 gallery">
         		<?php foreach ($filesInDirectory as $value) { ?>
-        		<a href="./logic-bucket-subir.php?toupload=<?=$value?>">
-					<img src="./originales/<?=$value?>" />
+        		<a href="./../logic/bucket-subir.php?toupload=<?=$value?>">
+					<img src="./../originales/<?=$value?>" />
 				</a>
         		<?php } ?>
     		</div>

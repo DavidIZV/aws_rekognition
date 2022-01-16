@@ -12,7 +12,7 @@
 	<section>
 
 		<div class="w-100">
-			<form enctype="multipart/form-data" method="POST" action="./logic-local-subir.php" >
+			<form enctype="multipart/form-data" method="POST" action="./logic/local-subir.php" >
 
 				<h1>Upload image</h1>
 

@@ -4,7 +4,7 @@
 			<a href="/pia/upload/">Home</a>
 		</li>
 		<li>
-			<a href="/pia/upload/view-bucket-vista.php">Images</a>
+			<a href="/pia/upload/view/bucket-vista.php">Images</a>
 		</li>
 	</ul>
 </nav>

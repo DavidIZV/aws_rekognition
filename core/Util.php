@@ -35,7 +35,7 @@ class Util {
 
     private static function writeLog ($linea = '') {
 
-        $logDir = './log/';
+        $logDir = __DIR__ . './../log/';
         Util::createDirIfNotExists($logDir);
 
         $logFile = $logDir . self::systemDate() . ".log";
