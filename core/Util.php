@@ -28,14 +28,15 @@ class Util {
 
     static function createDirIfNotExists ($target = NULL) {
 
-        if ($target != NULL && ! file_exists($target)) {
+        if ($target != NULL && (! file_exists($target) && ! is_dir($target))) {
+            Util::print("Creado directorio: " . $target);
             mkdir($target, 0777, true);
         }
     }
 
     private static function writeLog ($linea = '') {
 
-        $logDir = __DIR__ . './../log/';
+        $logDir = __DIR__ . '/../log/';
         Util::createDirIfNotExists($logDir);
 
         $logFile = $logDir . self::systemDate() . ".log";

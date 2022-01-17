@@ -41,9 +41,11 @@ class Uploader {
 
     static private function moveFile ($file) {
 
-        $target = './originales';
+        $target = __DIR__ . '/../originales';
 
         Util::createDirIfNotExists($target);
+        
+        Util::print("Directorio temporal originales");
 
         $uniqueName = uniqid('image_');
 
@@ -55,8 +57,10 @@ class Uploader {
 
         $uploadedFile = $target . '/' . $uniqueName . '.' . $extension;
 
+        Util::print("Justo antes de subir");
         if (move_uploaded_file($tmp_name, $uploadedFile)) {
 
+            Util::print("Fichero subido");
             return [
                     $uploadedFile,
                     $uniqueName . '.' . $extension,
@@ -72,6 +76,7 @@ class Uploader {
 
         if (! self::isUploadedFile($paramName)) {
 
+            Util::print("No esta subido el fichero");
             return false;
         }
 
@@ -79,6 +84,7 @@ class Uploader {
 
         if (! self::isValidUploadedFile($file)) {
 
+            Util::print("No es un fichero valido");
             return false;
         }
 
