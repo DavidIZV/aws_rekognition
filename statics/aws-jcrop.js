@@ -1,37 +1,33 @@
 (function() {
 	'use strict';
 
-	// 	window.awsjcrop=Jcrop.attach('myimage');
-	//   window.awsjcrop.setOptions({ multi: true, shadeColor: 'red', aspectRatio: 1 });
-
-	var jcp;
+	var jcp, rect;
 	Jcrop.load('myimage').then(img => {
 		jcp = Jcrop.attach(img, { multi: true });
-		const rect = Jcrop.Rect.sizeOf(jcp.el);
-		// jcp.newWidget(rect.scale(.7,.5).center(rect.w,rect.h));
+		rect = Jcrop.Rect.sizeOf(jcp.el);
 		jcp.focus();
 	});
 
-	function setImage(tag) {
-		document.getElementById('target').src =
-			'https://d3o1694hluedf9.cloudfront.net/' + tag;
-	}
+	var img = jQuery("#myimage");
 
-	function rcoord() {
-		const w = jcp.el.offsetWidth;
-		const h = jcp.el.offsetHeight;
-		return [Math.round(Math.random() * w), Math.round(Math.random() * h)];
-	}
+	var imageName = img.attr('class').split(" ");
 
-	function rrect() {
-		return Jcrop.Rect.fromCoords(rcoord(), rcoord());
-	}
+	$.getJSON("/pia/upload/logic/bucket-analizar.php?toanalyze=" + imageName[1], function(result) {
 
-	function anim() {
-		if (!jcp.active) return false;
-		const animtype = document.getElementById('animtype').value;
-		jcp.active.animate(rrect(), null, animtype);
-		jcp.focus();
-	}
+		$(".aws-data").text(JSON.stringify(result.faces, null, 2));
+
+		result.faces.forEach(function(face) {
+			var t = img[0].height * face.top;
+			var l = img[0].width * face.left;
+			var h = img[0].height * face.height;
+			var w = img[0].width * face.width;
+			const rect = Jcrop.Rect.create(l, t, w, h);
+			const options = {
+				opacity: 0.7
+			};
+			jcp.newWidget(rect, options);
+		});
+
+	});
 
 })();

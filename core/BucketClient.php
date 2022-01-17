@@ -130,7 +130,7 @@ class BucketClient {
                         )
                 ));
 
-        Util::print("Datos de salida: " . json_encode($result));
+        Util::print("Datos de salida: " . json_encode($result["FaceDetails"]));
         return $result;
     }
 }

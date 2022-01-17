@@ -1,22 +1,7 @@
 <?php
 require './../autoload.php';
 
-$filesInDirectory = array();
 $imageName = Util::getParam("toanalyze");
-$filename = __DIR__ . '/../originales/' . $imageName;
-
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
-$dotenv->safeLoad();
-
-$key = $_ENV['aws_access_key_id'];
-$secret = $_ENV['aws_secret_access_key'];
-$token = $_ENV['aws_session_token'];
-
-$bucket = 'aws-bucket-php-dawid';
-
-$analysis = BucketClient::analyzeImage('us-east-1', $filename, $key, $secret, $token, $bucket, $imageName);
-
-$faces = Mapper::translateDataAws($analysis);
 ?>
 <!doctype html>
 <html lang="en">
@@ -35,11 +20,12 @@ $faces = Mapper::translateDataAws($analysis);
 		<div class="w-80 gallery">
 			<h3 class="w-100">Image to analyze</h3>
 			<div class="w-100">
-				<img id="myimage" class="img-no-max" src="./../originales/<?=$imageName?>" />
+				<img id="myimage" class="img-no-max <?=$imageName?>" src="./../originales/<?=$imageName?>" />
 			</div>
 		</div>
-		<div class="w-20">
-			<p><?=var_dump($faces)?></p>
+		<div class="w-20 vertical">
+			<h3 class="w-100">AWS data</h3>
+			<p class="aws-data"></p>
 		</div>
 	</section>
 
