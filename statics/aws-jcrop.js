@@ -12,7 +12,7 @@
 
 	var imageName = img.attr('class').split(" ");
 
-	$.getJSON("/pia/upload/logic/bucket-analizar.php?toanalyze=" + imageName[1], function(result) {
+	$.getJSON("/pia/upload/logic/bucket-analizar.php?toanalyze=" + imageName[0], function(result) {
 
 		$(".aws-data").text(JSON.stringify(result.faces, null, 2));
 
@@ -22,9 +22,7 @@
 			var h = img[0].height * face.height;
 			var w = img[0].width * face.width;
 			const rect = Jcrop.Rect.create(l, t, w, h);
-			const options = {
-				opacity: 0.7
-			};
+			const options = {};
 			jcp.newWidget(rect, options);
 		});
 
