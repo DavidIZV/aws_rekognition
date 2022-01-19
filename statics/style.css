@@ -44,15 +44,23 @@ section {
 }
 
 .w-20 {
-	flex: 1 1 20%;
+	flex: 0 0 20%;
+}
+
+.w-40 {
+	flex: 0 0 40%;
 }
 
 .w-50 {
-	flex: 1 1 50%;
+	flex: 0 0 50%;
+}
+
+.w-60 {
+	flex: 0 0 60%;
 }
 
 .w-80 {
-	flex: 1 1 80%;
+	flex: 0 0 80%;
 }
 
 .w-100 {
@@ -85,25 +93,38 @@ form > *, .vertical > * {
 }
 
 form > *.w-20, .vertical > *.w-20 {
-	width: 20%;
+	width: 19%;
+}
+
+form > *.w-40, .vertical > *.w-40 {
+	width: 39%;
 }
 
 form > *.w-50, .vertical > *.w-50 {
-	width: 50%;
+	width: 49%;
+}
+
+form > *.w-60, .vertical > *.w-60 {
+	width: 59%;
 }
 
 form > *.w-80, .vertical > *.w-80 {
-	width: 80%;
+	width: 79%;
 }
 
 form > *.w-100, .vertical > *.w-100 {
 	width: 100%;
 }
 
+.no-wrap {
+	flex-wrap: no-wrap;
+}
+
 .btn {
 	background-color: #4CAF50;
 	border: none;
 	color: white;
+	cursor: pointer;
 	padding: 15px 32px;
 	text-align: center;
 	text-decoration: none;

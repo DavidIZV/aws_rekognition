@@ -16,14 +16,17 @@ $imageName = Util::getParam("toanalyze");
 
 <?php require './../nav.php'; ?>
 
-	<section>
-		<div class="w-80 gallery">
+	<section class="no-wrap">
+		<div class="w-60 gallery">
 			<h3 class="w-100">Image to analyze</h3>
 			<div class="w-100">
 				<img id="myimage" class="<?=$imageName?> img-700-max" src="./../originales/<?=$imageName?>" />
 			</div>
+			<div class="w-100">
+				<button type="button" class="btn btn-to-blurr">Upload</button>
+			</div>
 		</div>
-		<div class="w-20 vertical">
+		<div class="w-40 vertical">
 			<h3 class="w-100">AWS data</h3>
 			<p class="aws-data"></p>
 		</div>
