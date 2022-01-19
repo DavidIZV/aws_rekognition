@@ -10,7 +10,7 @@ $imageName = $input["imageName"];
 $imageNameFilename = __DIR__ . '/../originales/' . $imageName;
 
 $imageBlurredName = $imageName . "Copy.jpg";
-$imageBlurredNameFilename = $imageNameFilename . "Copy.jpg";
+$imageBlurredNameFilename = __DIR__ . '/../originales/' . $imageBlurredName;
 
 if (Util::image_blurred_bg($imageNameFilename, $imageBlurredNameFilename, $coords)) {
     echo json_encode([
