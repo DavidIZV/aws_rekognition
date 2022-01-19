@@ -9,13 +9,15 @@ $coords = $input["coords"];
 $imageName = $input["imageName"];
 $imageNameFilename = __DIR__ . '/../originales/' . $imageName;
 
-$imageBlurredName = $imageName . "Copy.jpg";
+$imageBlurredName = "Copy.png";
 $imageBlurredNameFilename = __DIR__ . '/../originales/' . $imageBlurredName;
+$imageBlurredNameHref = './../originales/' . $imageBlurredName;
 
 if (Util::image_blurred_bg($imageNameFilename, $imageBlurredNameFilename, $coords)) {
     echo json_encode([
             "ok" => true,
-            "new_name" => $imageBlurredName
+            "new_name" => $imageBlurredName,
+            "new_href" => $imageBlurredNameHref
     ]);
 } else {
     echo json_encode([

@@ -34,20 +34,18 @@
 			});
 	}
 
-	function blurrImage(imageName) {
+	function blurrImage(imageDimensions, imageName) {
 
 		var coordsAndSize = [];
 
 		jcp.crops.forEach(function(value) {
 			var position = {};
-			position.width = value.pos.w;
-			position.height = value.pos.h;
-			position.top = value.pos.y;
-			position.left = value.pos.x;
+			position.width = value.pos.w / imageDimensions.width;
+			position.height = value.pos.h / imageDimensions.height;
+			position.top = value.pos.y / imageDimensions.height;
+			position.left = value.pos.x / imageDimensions.width;
 			coordsAndSize.push(position);
 		});
-
-		console.log('Image to blurr', imageName);
 
 		fetch("/pia/upload/logic/local-blurrer.php", {
 			body: JSON.stringify({ imageName: imageName, coords: coordsAndSize }),
@@ -62,6 +60,12 @@
 			.then(function(data) {
 				console.log('Request succeeded with JSON response', data);
 				printAws(data);
+				
+				if(data.ok){
+					var img = $('<img class="img-700-max">');
+					img.attr('src', data.new_href);
+					img.appendTo('.newImage');
+				}
 			})
 			.catch(function(error) {
 				console.log('Request failed', error);
@@ -87,7 +91,11 @@
 	markBoxes(imageDimensions, imageName[0]);
 
 	jQuery(".btn-to-blurr").click(function() {
-		blurrImage(imageName[0]);
+		blurrImage(imageDimensions, imageName[0]);
+	});
+
+	jQuery(".btn-to-delete").click(function() {
+		//blurrImage(imageDimensions, imageName[0]);
 	});
 
 })();

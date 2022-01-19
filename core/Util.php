@@ -52,7 +52,58 @@ class Util {
         return (new DateTime())->format('Y-m-d');
     }
 
-    static function image_blurred_bg ($image, $dest, $coords) {
+    static function image_blurred_bg ($imageFileName, $dest, $coords) {
+
+        try {
+            $info = getimagesize($imageFileName);
+        } catch (Exception $e) {
+            return false;
+        }
+
+        $mimetype = image_type_to_mime_type($info[2]);
+        switch ($mimetype) {
+            case 'image/jpeg':
+                $image1 = imagecreatefromjpeg($imageFileName);
+                $image2 = imagecreatefromjpeg($imageFileName);
+                break;
+            case 'image/gif':
+                $image1 = imagecreatefromgif($imageFileName);
+                $image2 = imagecreatefromgif($imageFileName);
+                break;
+            case 'image/png':
+                $image1 = imagecreatefrompng($imageFileName);
+                $image2 = imagecreatefrompng($imageFileName);
+                break;
+            default:
+                return false;
+        }
+
+        $wor = imagesx($image1);
+        $hor = imagesy($image1);
+        
+        foreach ($coords as $clave=>$valor){
+            $coords[$clave]['top'] = $coords[$clave]['top'] * $hor;
+            $coords[$clave]['height'] = $coords[$clave]['height'] * $hor;
+            $coords[$clave]['left'] = $coords[$clave]['left'] * $wor;
+            $coords[$clave]['width'] = $coords[$clave]['width'] * $wor;
+        }
+
+        for ($i = 1; $i<30; $i++) {
+             imagefilter($image1, IMG_FILTER_GAUSSIAN_BLUR);
+        }
+        
+        foreach ($coords as $clave=>$valor){
+            imagecopy($image2, $image1, $valor['left'], $valor['top'], $valor['left'], $valor['top'], $valor['width'], $valor['height']);
+        }
+        imagepng($image2, $dest, 0, PNG_NO_FILTER);
+
+        imagedestroy($image1);
+        imagedestroy($image2);
+
+        return true;
+    }
+
+    static function image_blurred_bgOld ($image, $dest, $coords) {
 
         try {
             $info = getimagesize($image);
