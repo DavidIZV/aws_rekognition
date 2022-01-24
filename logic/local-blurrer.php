@@ -9,9 +9,9 @@ $coords = $input["coords"];
 $imageName = $input["imageName"];
 $imageNameFilename = __DIR__ . '/../originales/' . $imageName;
 
-$imageBlurredName = "Copy.png";
-$imageBlurredNameFilename = __DIR__ . '/../originales/' . $imageBlurredName;
-$imageBlurredNameHref = './../originales/' . $imageBlurredName;
+$imageBlurredName = $imageName;
+$imageBlurredNameFilename = __DIR__ . '/../originales/blur/' . $imageBlurredName;
+$imageBlurredNameHref = './../originales/blur/' . $imageBlurredName;
 
 if (Util::image_blurred_bg($imageNameFilename, $imageBlurredNameFilename, $coords)) {
     echo json_encode([

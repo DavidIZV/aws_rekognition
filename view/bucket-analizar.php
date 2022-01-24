@@ -25,6 +25,7 @@ $imageName = Util::getParam("toanalyze");
 			<div class="w-100">
 				<button type="button" class="btn btn-to-blurr">Blur</button>
 				<button type="button" class="btn btn-to-delete">Delete active box</button>
+				<button type="button" class="btn btn-to-blurr-saved">Blur saved</button>
 			</div>
 		</div>
 		<div class="w-100 gallery">
