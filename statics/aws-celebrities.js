@@ -25,7 +25,7 @@
 					var w = imageDimensions.width * celebrity.face.width;
 					const rect = Jcrop.Rect.create(l, t, w, h);
 					const options = {
-						shadeOpacity: 0.3
+						shadeOpacity: 0.00001
 					};
 					jcpCelebrities.newWidget(rect, options).addClass('celebrity-people');
 
