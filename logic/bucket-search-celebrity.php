@@ -13,8 +13,8 @@ $token = $_ENV['aws_session_token'];
 
 $bucket = 'aws-bucket-php-dawid';
 
-$analysis = BucketClient::analyzeImage('us-east-1', $filename, $key, $secret, $token, $bucket, $imageName);
+$analysis = BucketClient::searchCelebrities('us-east-1', $filename, $key, $secret, $token, $bucket, $imageName);
 
-$faces = Mapper::translateAwsFacesData($analysis);
+$celebrities = Mapper::translateAwsCelebritiesData($analysis);
 
-echo json_encode($faces);
+echo json_encode($celebrities);

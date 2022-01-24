@@ -9,3 +9,4 @@ require_once __DIR__ . '/core/Uploader.php';
 require_once __DIR__ . '/core/Util.php';
 require_once __DIR__ . '/core/Mapper.php';
 require_once __DIR__ . '/model/Face.php';
+require_once __DIR__ . '/model/Celebrity.php';

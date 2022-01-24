@@ -2,22 +2,49 @@
 
 class Mapper {
 
-    static function translateDataAws ($data) {
+    static function translateAwsFacesData ($response) {
 
         $result = [];
 
-        $faces = $data["FaceDetails"];
+        $datas = $response["FaceDetails"];
 
-        foreach ($faces as $face) {
+        foreach ($datas as $data) {
             $newFace = new Face();
-            $newFace->lowAge = $face["AgeRange"]["Low"];
-            $newFace->highAge = $face["AgeRange"]["High"];
-            $newFace->left = $face["BoundingBox"]["Left"];
-            $newFace->top = $face["BoundingBox"]["Top"];
-            $newFace->width = $face["BoundingBox"]["Width"];
-            $newFace->height = $face["BoundingBox"]["Height"];
+            $newFace->lowAge = $data["AgeRange"]["Low"];
+            $newFace->highAge = $data["AgeRange"]["High"];
+            $newFace->left = $data["BoundingBox"]["Left"];
+            $newFace->top = $data["BoundingBox"]["Top"];
+            $newFace->width = $data["BoundingBox"]["Width"];
+            $newFace->height = $data["BoundingBox"]["Height"];
             array_push($result, $newFace);
         }
-        return $result;
+
+        return [
+                "faces" => $result
+        ];
+    }
+
+    static function translateAwsCelebritiesData ($response) {
+
+        $result = [];
+
+        $datas = $response["CelebrityFaces"];
+
+        foreach ($datas as $data) {
+            $newCelebrity = new Celebrity();
+            $newCelebrity->name = $data["Name"];
+            $newCelebrity->url = $data["Urls"][0];
+            $newFace = new Face();
+            $newFace->left = $data["Face"]["BoundingBox"]["Left"];
+            $newFace->top = $data["Face"]["BoundingBox"]["Top"];
+            $newFace->width = $data["Face"]["BoundingBox"]["Width"];
+            $newFace->height = $data["Face"]["BoundingBox"]["Height"];
+            $newCelebrity->face = $newFace;
+            array_push($result, $newCelebrity);
+        }
+
+        return [
+                "celebrities" => $result
+        ];
     }
 }

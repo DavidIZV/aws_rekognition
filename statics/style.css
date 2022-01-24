@@ -162,3 +162,11 @@ form > *.w-100, .vertical > *.w-100 {
 .none {
 	display: none;
 }
+
+.jcrop-widget.celebrity-people {
+	border-color: yellow;
+}
+
+.jcrop-widget.celebrity-people .jcrop-handle {
+	background-color: yellow;
+}

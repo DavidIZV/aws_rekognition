@@ -26,9 +26,18 @@ $imageName = Util::getParam("toanalyze");
 				<button type="button" class="btn btn-to-blurr">Blur</button>
 				<button type="button" class="btn btn-to-delete">Delete active box</button>
 				<button type="button" class="btn btn-to-blurr-saved">Blur saved</button>
+				<button type="button" class="btn btn-to-hide-celebrities">Hide celebrity marks</button>
 			</div>
 		</div>
-		<div class="w-100 gallery">
+		<div class="w-20 gallery celebrities">
+			<h3 class="w-100">Celebrities</h3>
+			<div class="w-100">
+				<ul>
+					<li>No detectados</li>
+				</ul>
+			</div>
+		</div>
+		<div class="w-80 gallery">
 			<h3 class="w-100">Result</h3>
 			<div class="w-100 newImage"></div>
 		</div>
@@ -40,7 +49,9 @@ $imageName = Util::getParam("toanalyze");
 
 	<div class="none">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
-		<script src="./../statics/aws-jcrop.js" type="text/javascript"></script>
+		<script src="./../statics/util.js" type="text/javascript"></script>
+		<script src="./../statics/aws-faces.js" type="text/javascript"></script>
+		<script src="./../statics/aws-celebrities.js" type="text/javascript"></script>
 	</div>
 
 </body>

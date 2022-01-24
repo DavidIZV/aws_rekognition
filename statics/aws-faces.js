@@ -1,11 +1,7 @@
 (function() {
 	'use strict';
 
-	function printAws(message) {
-		$(".aws-data").html($(".aws-data").html() + "<br><br>" + JSON.stringify(message, null, 2));
-	}
-
-	function markBoxes(imageDimensions, imageName) {
+	function searchFaces(imageDimensions, imageName) {
 
 		fetch("/pia/upload/logic/bucket-analizar.php?toanalyze=" + imageName, {
 			method: 'GET',
@@ -15,7 +11,7 @@
 			})
 			.then(function(data) {
 				console.log('Request succeeded with JSON response', data);
-				printAws(data.faces);
+				window.printAws(data.faces);
 
 				data.faces.forEach(function(face) {
 					if (face.lowAge < 18) {
@@ -76,6 +72,10 @@
 
 	function deleteJcropActive() {
 
+		jcp.crops.forEach(function(value) {
+			value.options.shadeColor = 'red';
+		});
+
 		jcp.active.el.remove();
 		jcp.removeWidget(jcp.active);
 	}
@@ -88,16 +88,9 @@
 		Jcrop.Rect.sizeOf(jcp.el);
 	});
 
-	var img = jQuery("#myimage");
+	var imageName = window.imgToWork.attr('class').split(" ");
 
-	var imageName = img.attr('class').split(" ");
-
-	var imageDimensions = {
-		height: img[0].height,
-		width: img[0].width
-	};
-
-	markBoxes(imageDimensions, imageName[0]);
+	searchFaces(window.imageDimensions, imageName[0]);
 
 	jQuery(".btn-to-blurr").click(function() {
 		blurrImage(imageDimensions, imageName[0]);
@@ -105,10 +98,6 @@
 
 	jQuery(".btn-to-delete").click(function() {
 		deleteJcropActive();
-	});
-
-	jQuery(".btn-to-blurr-saved").click(function() {
-		window.location.pathname = "/pia/upload/view/local-blurred.php";
 	});
 
 })();

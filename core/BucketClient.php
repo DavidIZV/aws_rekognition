@@ -108,6 +108,16 @@ class BucketClient {
 
     static public function analyzeImage ($region, $filename, $key, $secret, $token, $bucket, $imageName) {
 
+        return self::rekognition($region, $filename, $key, $secret, $token, $bucket, $imageName, 0);
+    }
+
+    static public function searchCelebrities ($region, $filename, $key, $secret, $token, $bucket, $imageName) {
+
+        return self::rekognition($region, $filename, $key, $secret, $token, $bucket, $imageName, 1);
+    }
+
+    static private function rekognition ($region, $filename, $key, $secret, $token, $bucket, $imageName, $service = 0) {
+
         $credentials = new Aws\Credentials\Credentials($key, $secret, $token);
         $options = [
                 'region' => $region,
@@ -117,18 +127,31 @@ class BucketClient {
 
         $rekognitionClient = new RekognitionClient($options);
 
-        $result = $rekognitionClient->DetectFaces(
-                array(
-                        'Image' => [
-                                'S3Object' => [
-                                        'Bucket' => $bucket,
-                                        'Name' => $imageName
-                                ]
-                        ],
-                        'Attributes' => array(
-                                'ALL'
-                        )
-                ));
+        $request = array(
+                'Image' => [
+                        'S3Object' => [
+                                'Bucket' => $bucket,
+                                'Name' => $imageName
+                        ]
+                ],
+                'Attributes' => array(
+                        'ALL'
+                )
+        );
+
+        return self::rekognitionServices($rekognitionClient, $request, $service);
+    }
+
+    static private function rekognitionServices ($rekognitionClient, $request, $service) {
+
+        switch ($service) {
+            case 0:
+                $result = $rekognitionClient->DetectFaces($request);
+                break;
+            case 1:
+                $result = $rekognitionClient->recognizeCelebrities($request);
+                break;
+        }
 
         Util::print("Datos de salida: " . json_encode($result["FaceDetails"]));
         return $result;
