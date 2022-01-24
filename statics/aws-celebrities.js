@@ -30,7 +30,7 @@
 					jcpCelebrities.newWidget(rect, options).addClass('celebrity-people');
 
 					var li = jQuery("<li class='w-100'></li>");
-					var link = jQuery("<a href='" + celebrity.url + "'>" + celebrity.name + "</a>");
+					var link = jQuery("<a href='https://" + celebrity.url + "'>" + celebrity.name + "</a>");
 					li.append(link)
 					ul.append(li);
 				});

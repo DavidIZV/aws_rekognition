@@ -116,7 +116,7 @@ class BucketClient {
         return self::rekognition($region, $filename, $key, $secret, $token, $bucket, $imageName, 1);
     }
 
-    static private function rekognition ($region, $filename, $key, $secret, $token, $bucket, $imageName, $service = 0) {
+    static private function createRekognitionCLient ($region, $key, $secret, $token) {
 
         $credentials = new Aws\Credentials\Credentials($key, $secret, $token);
         $options = [
@@ -125,7 +125,12 @@ class BucketClient {
                 'credentials' => $credentials
         ];
 
-        $rekognitionClient = new RekognitionClient($options);
+        return new RekognitionClient($options);
+    }
+
+    static private function rekognition ($region, $filename, $key, $secret, $token, $bucket, $imageName, $service = 0) {
+
+        $rekognitionClient = self::createRekognitionCLient($region, $key, $secret, $token);
 
         $request = array(
                 'Image' => [
@@ -142,7 +147,38 @@ class BucketClient {
         return self::rekognitionServices($rekognitionClient, $request, $service);
     }
 
-    static private function rekognitionServices ($rekognitionClient, $request, $service) {
+    static public function listCollections ($region, $key, $secret, $token) {
+
+        $rekognitionClient = self::createRekognitionCLient($region, $key, $secret, $token);
+
+        $request = array();
+
+        return self::rekognitionServices($rekognitionClient, $request, 2);
+    }
+
+    static public function createCollection ($region, $collectionName, $key, $secret, $token) {
+
+        $rekognitionClient = self::createRekognitionCLient($region, $key, $secret, $token);
+
+        $request = array(
+                'CollectionId' => $collectionName
+        );
+
+        return self::rekognitionServices($rekognitionClient, $request, 3);
+    }
+
+    static public function deleteCollection ($region, $collectionName, $key, $secret, $token) {
+
+        $rekognitionClient = self::createRekognitionCLient($region, $key, $secret, $token);
+
+        $request = array(
+                'CollectionId' => $collectionName
+        );
+
+        return self::rekognitionServices($rekognitionClient, $request, 4);
+    }
+
+    static private function rekognitionServices (RekognitionClient $rekognitionClient, $request, $service) {
 
         switch ($service) {
             case 0:
@@ -150,6 +186,21 @@ class BucketClient {
                 break;
             case 1:
                 $result = $rekognitionClient->recognizeCelebrities($request);
+                break;
+            case 2:
+                $result = $rekognitionClient->listCollections($request);
+                break;
+            case 3:
+                $result = $rekognitionClient->createCollection($request);
+                break;
+            case 4:
+                $result = $rekognitionClient->deleteCollection($request);
+                break;
+            case 5:
+                $result = $rekognitionClient->indexFaces($request);
+                break;
+            case 6:
+                $result = $rekognitionClient->searchFacesByImage($request);
                 break;
         }
 

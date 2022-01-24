@@ -150,6 +150,11 @@ form > *.w-100, .vertical > *.w-100 {
 	color: black;
 }
 
+.btn-to-write {
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
 .gallery {
 	justify-content: space-around;
 }
