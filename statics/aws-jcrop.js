@@ -18,15 +18,17 @@
 				printAws(data.faces);
 
 				data.faces.forEach(function(face) {
-					var t = imageDimensions.height * face.top;
-					var l = imageDimensions.width * face.left;
-					var h = imageDimensions.height * face.height;
-					var w = imageDimensions.width * face.width;
-					const rect = Jcrop.Rect.create(l, t, w, h);
-					const options = {
-						shadeOpacity: 0.3
-					};
-					jcp.newWidget(rect, options);
+					if (face.lowAge < 18) {
+						var t = imageDimensions.height * face.top;
+						var l = imageDimensions.width * face.left;
+						var h = imageDimensions.height * face.height;
+						var w = imageDimensions.width * face.width;
+						const rect = Jcrop.Rect.create(l, t, w, h);
+						const options = {
+							shadeOpacity: 0.3
+						};
+						jcp.newWidget(rect, options);
+					}
 				});
 			})
 			.catch(function(error) {

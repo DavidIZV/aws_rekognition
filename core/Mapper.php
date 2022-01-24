@@ -10,6 +10,8 @@ class Mapper {
 
         foreach ($faces as $face) {
             $newFace = new Face();
+            $newFace->lowAge = $face["AgeRange"]["Low"];
+            $newFace->highAge = $face["AgeRange"]["High"];
             $newFace->left = $face["BoundingBox"]["Left"];
             $newFace->top = $face["BoundingBox"]["Top"];
             $newFace->width = $face["BoundingBox"]["Width"];
