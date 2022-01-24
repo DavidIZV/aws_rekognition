@@ -24,7 +24,7 @@
 					var w = imageDimensions.width * face.width;
 					const rect = Jcrop.Rect.create(l, t, w, h);
 					const options = {
-						opacity: 0.7
+						shadeOpacity: 0.3
 					};
 					jcp.newWidget(rect, options);
 				});
@@ -60,8 +60,8 @@
 			.then(function(data) {
 				console.log('Request succeeded with JSON response', data);
 				printAws(data);
-				
-				if(data.ok){
+
+				if (data.ok) {
 					var img = $('<img class="img-700-max">');
 					img.attr('src', data.new_href);
 					img.appendTo('.newImage');
@@ -72,11 +72,18 @@
 			});
 	}
 
-	let jcp, rect;
+	function deleteJcropActive() {
+
+		jcp.active.el.remove();
+		jcp.removeWidget(jcp.active);
+	}
+
+	let jcp;
 	Jcrop.load('myimage').then(img => {
 		jcp = Jcrop.attach(img, { multi: true });
-		rect = Jcrop.Rect.sizeOf(jcp.el);
+		jcp.setOptions({ shadeOpacity: 0.2 });
 		jcp.focus();
+		Jcrop.Rect.sizeOf(jcp.el);
 	});
 
 	var img = jQuery("#myimage");
@@ -95,7 +102,7 @@
 	});
 
 	jQuery(".btn-to-delete").click(function() {
-		//blurrImage(imageDimensions, imageName[0]);
+		deleteJcropActive();
 	});
 
 })();
