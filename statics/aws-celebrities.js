@@ -59,9 +59,9 @@
 		Jcrop.Rect.sizeOf(jcpCelebrities.el);
 	});
 
-	var imageName = window.imgToWork.attr('class').split(" ");
+	var imageName = window.imgToWork.attr('class').split(" ")[0];
 
-	searchCelebrities(window.imageDimensions, imageName[0]);
+	searchCelebrities(window.imageDimensions, imageName);
 
 	jQuery(".btn-to-hide-celebrities").click(function() {
 		hideCelebrities();

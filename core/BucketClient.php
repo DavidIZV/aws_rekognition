@@ -178,6 +178,47 @@ class BucketClient {
         return self::rekognitionServices($rekognitionClient, $request, 4);
     }
 
+    static public function indexFaces ($region, $bucket, $imageName, $collectionName, $key, $secret, $token) {
+
+        $rekognitionClient = self::createRekognitionCLient($region, $key, $secret, $token);
+
+        $request = array(
+                'CollectionId' => $collectionName,
+                'Image' => [
+                        'S3Object' => [
+                                'Bucket' => $bucket,
+                                'Name' => $imageName
+                        ]
+                ],
+                "DetectionAttributes" => array(
+                        'ALL'
+                ),
+                "ExternalImageId" => $imageName
+        );
+
+        return self::rekognitionServices($rekognitionClient, $request, 5);
+    }
+
+    static public function searchFacesByImage ($region, $bucket, $imageName, $collectionName, $key, $secret, $token) {
+
+        $rekognitionClient = self::createRekognitionCLient($region, $key, $secret, $token);
+
+        $request = array(
+                'CollectionId' => $collectionName,
+                'Image' => [
+                        'S3Object' => [
+                                'Bucket' => $bucket,
+                                'Name' => $imageName
+                        ]
+                ],
+                "DetectionAttributes" => array(
+                        'ALL'
+                )
+        );
+
+        return self::rekognitionServices($rekognitionClient, $request, 6);
+    }
+
     static private function rekognitionServices (RekognitionClient $rekognitionClient, $request, $service) {
 
         switch ($service) {

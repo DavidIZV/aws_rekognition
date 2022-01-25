@@ -12,8 +12,6 @@
 		width: window.imgToWork[0].width
 	};
 
-	var imageName = imgToWork.attr('class').split(" ");
-
 	jQuery(".btn-to-blurr-saved").click(function() {
 		window.location.pathname = "/pia/upload/view/local-blurred.php";
 	});

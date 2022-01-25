@@ -155,6 +155,11 @@ form > *.w-100, .vertical > *.w-100 {
 	color: #000000;
 }
 
+.btn-mini {
+	font-size: 14px;
+    padding: 5px 10px;
+}
+
 .gallery {
 	justify-content: space-around;
 }
@@ -174,4 +179,12 @@ form > *.w-100, .vertical > *.w-100 {
 
 .jcrop-widget.celebrity-people .jcrop-handle {
 	background-color: yellow;
+}
+
+.jcrop-widget.collection-people {
+	border-color: green;
+}
+
+.jcrop-widget.collection-people .jcrop-handle {
+	background-color: green;
 }
