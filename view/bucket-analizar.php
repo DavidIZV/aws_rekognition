@@ -51,7 +51,7 @@ $imageName = Util::getParam("toanalyze");
 			<h3 class="w-100">Result</h3>
 			<div class="w-100 newImage"></div>
 		</div>
-		<div class="w-100 vertical">
+		<div class="w-100 console">
 			<h3 class="w-100">AWS data</h3>
 			<p class="aws-data"></p>
 		</div>

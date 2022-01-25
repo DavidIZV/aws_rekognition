@@ -151,7 +151,11 @@ class BucketClient {
 
         $rekognitionClient = self::createRekognitionCLient($region, $key, $secret, $token);
 
-        $request = array();
+        $request = array(
+                'Attributes' => array(
+                        'ALL'
+                )
+        );
 
         return self::rekognitionServices($rekognitionClient, $request, 2);
     }
@@ -199,12 +203,14 @@ class BucketClient {
         return self::rekognitionServices($rekognitionClient, $request, 5);
     }
 
-    static public function searchFacesByImage ($region, $bucket, $imageName, $collectionName, $key, $secret, $token) {
+    static public function searchFacesByImage ($region, $bucket, $imageName, $collectionName, $key, $secret, $token,
+            $accurancity) {
 
         $rekognitionClient = self::createRekognitionCLient($region, $key, $secret, $token);
 
         $request = array(
                 'CollectionId' => $collectionName,
+                "FaceMatchThreshold" => floatval($accurancity),
                 'Image' => [
                         'S3Object' => [
                                 'Bucket' => $bucket,
@@ -213,7 +219,9 @@ class BucketClient {
                 ],
                 "DetectionAttributes" => array(
                         'ALL'
-                )
+                ),
+                "MaxFaces" => 25,
+                "QualityFilter" => "LOW"
         );
 
         return self::rekognitionServices($rekognitionClient, $request, 6);

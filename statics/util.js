@@ -2,7 +2,7 @@
 	'use strict';
 
 	window.printAws = function(message) {
-		$(".aws-data").html($(".aws-data").html() + "<br><br>" + JSON.stringify(message, null, 2));
+		$(".aws-data").html(JSON.stringify(message, null, 2) + "<br><br>" + $(".aws-data").html());
 	}
 
 	window.imgToWork = jQuery("#myimage");
