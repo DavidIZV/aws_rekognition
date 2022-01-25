@@ -16,8 +16,8 @@ $collectionName = $_GET["collection-to"];
 $bucket = 'aws-bucket-php-dawid';
 
 $analysis = BucketClient::indexFaces('us-east-1', $bucket, $imageName, $collectionName, $key, $secret, $token);
-var_dump($analysis["FaceRecords"]);
 
 echo json_encode([
-        "ok" => true
+        "ok" => true,
+        "faces" => $analysis["FaceRecords"]
 ]);
