@@ -227,7 +227,23 @@ class BucketClient {
         return self::rekognitionServices($rekognitionClient, $request, 6);
     }
 
-    static private function rekognitionServices (RekognitionClient $rekognitionClient, $request, $service) {
+    static public function detectText ($region, $bucket, $imageName, $key, $secret, $token) {
+
+        $rekognitionClient = self::createRekognitionCLient($region, $key, $secret, $token);
+
+        $request = array(
+                'Image' => [
+                        'S3Object' => [
+                                'Bucket' => $bucket,
+                                'Name' => $imageName
+                        ]
+                ]
+        );
+
+        return self::rekognitionServices($rekognitionClient, $request, 7);
+    }
+
+    static private function rekognitionServices (RekognitionClient $rekognitionClient, $request, $service = 0) {
 
         switch ($service) {
             case 0:
@@ -250,6 +266,9 @@ class BucketClient {
                 break;
             case 6:
                 $result = $rekognitionClient->searchFacesByImage($request);
+                break;
+            case 7:
+                $result = $rekognitionClient->detectText($request);
                 break;
         }
 

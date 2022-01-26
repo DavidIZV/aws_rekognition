@@ -39,6 +39,14 @@ $imageName = Util::getParam("toanalyze");
 				</ul>
 			</div>
 		</div>
+		<div class="w-20 gallery tags">
+			<h3 class="w-100">Texts detected in image</h3>
+			<div class="w-100">
+				<ul>
+					<li>No detectados</li>
+				</ul>
+			</div>
+		</div>
 		<div class="w-20 gallery collections">
 			<h3 class="w-100">Collections</h3>
 			<div class="w-100">
@@ -60,6 +68,7 @@ $imageName = Util::getParam("toanalyze");
 	<div class="none">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
 		<script src="./../statics/util.js" type="text/javascript"></script>
+		<script src="./../statics/aws-text.js" type="text/javascript"></script>
 		<script src="./../statics/aws-faces.js" type="text/javascript"></script>
 		<script src="./../statics/aws-celebrities.js" type="text/javascript"></script>
 		<script src="./../statics/aws-collections.js" type="text/javascript"></script>
