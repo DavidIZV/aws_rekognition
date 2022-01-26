@@ -47,6 +47,10 @@ section {
 	width: 96%;
 }
 
+.list {
+	font-size: 1.5em;
+}
+
 .w-20 {
 	flex: 0 0 20%;
 }

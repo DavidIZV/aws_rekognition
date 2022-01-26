@@ -1,14 +1,18 @@
 <?php
 $filesInDirectory = array();
 $dir = './../originales/blur';
-$cdir = scandir($dir);
-foreach ($cdir as $key => $value) {
-    if ($value != '..' and $value != '.') {
-        $dirSecond = scandir($dir . DIRECTORY_SEPARATOR . $value);
-        foreach ($dirSecond as $keyDeeper => $valueDeeper) {
-            if ($valueDeeper != '..' and $valueDeeper != '.') {
-                if (! is_dir($dir . DIRECTORY_SEPARATOR . $value . DIRECTORY_SEPARATOR . $valueDeeper)) {
-                    array_push($filesInDirectory, $value . DIRECTORY_SEPARATOR . $valueDeeper);
+if (is_dir($dir)) {
+    $cdir = scandir($dir);
+    foreach ($cdir as $key => $value) {
+        if ($value != '..' and $value != '.') {
+            if (is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
+                $dirSecond = scandir($dir . DIRECTORY_SEPARATOR . $value);
+                foreach ($dirSecond as $keyDeeper => $valueDeeper) {
+                    if ($valueDeeper != '..' and $valueDeeper != '.') {
+                        if (! is_dir($dir . DIRECTORY_SEPARATOR . $value . DIRECTORY_SEPARATOR . $valueDeeper)) {
+                            array_push($filesInDirectory, $value . DIRECTORY_SEPARATOR . $valueDeeper);
+                        }
+                    }
                 }
             }
         }
