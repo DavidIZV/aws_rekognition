@@ -16,4 +16,12 @@
 		window.location.pathname = "/pia/upload/view/local-blurred.php";
 	});
 
+	window.startLoading = function(message) {
+		$(".load").removeClass('none');
+	}
+
+	window.endLoading = function(message) {
+		$(".load").addClass('none');
+	}
+
 })();

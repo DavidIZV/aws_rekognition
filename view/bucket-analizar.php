@@ -65,6 +65,8 @@ $imageName = Util::getParam("toanalyze");
 		</div>
 	</section>
 
+	<div class="none load">Loading</div>
+
 	<div class="none">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
 		<script src="./../statics/util.js" type="text/javascript"></script>

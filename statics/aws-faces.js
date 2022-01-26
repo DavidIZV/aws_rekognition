@@ -3,6 +3,7 @@
 
 	function searchFaces(imageDimensions, imageName) {
 
+		window.startLoading();
 		fetch("/pia/upload/logic/bucket-analizar.php?toanalyze=" + imageName, {
 			method: 'GET',
 		})
@@ -10,8 +11,7 @@
 				return response.json();
 			})
 			.then(function(data) {
-				console.log('Request succeeded with JSON response', data);
-				window.printAws(data.faces);
+				window.printAws(data);
 
 				data.faces.forEach(function(face) {
 					if (face.lowAge < 18) {
@@ -26,9 +26,11 @@
 						jcp.newWidget(rect, options);
 					}
 				});
+				window.endLoading();
 			})
 			.catch(function(error) {
-				console.log('Request failed', error);
+				window.printAws(error);
+				window.endLoading();
 			});
 	}
 
@@ -45,6 +47,7 @@
 			coordsAndSize.push(position);
 		});
 
+		window.startLoading();
 		fetch("/pia/upload/logic/local-blurrer.php", {
 			body: JSON.stringify({ imageName: imageName, coords: coordsAndSize }),
 			headers: {
@@ -56,17 +59,18 @@
 				return response.json();
 			})
 			.then(function(data) {
-				console.log('Request succeeded with JSON response', data);
-				printAws(data);
+				window.printAws(data);
 
 				if (data.ok) {
 					var img = $('<img class="img-700-max">');
 					img.attr('src', data.new_href);
 					img.appendTo('.newImage');
 				}
+				window.endLoading();
 			})
 			.catch(function(error) {
-				console.log('Request failed', error);
+				window.printAws(error);
+				window.endLoading();
 			});
 	}
 

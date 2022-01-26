@@ -3,6 +3,7 @@
 
 	function searchTexts(imageName) {
 
+		window.startLoading();
 		fetch("/pia/upload/logic/bucket-text.php?toanalyze=" + imageName, {
 			method: 'GET',
 		})
@@ -10,8 +11,7 @@
 				return response.json();
 			})
 			.then(function(data) {
-				console.log('Request succeeded with JSON response', data);
-				window.printAws(data.texts);
+				window.printAws(data);
 
 				var ul = jQuery(".tags ul");
 				if (data.texts.length > 0) {
@@ -24,9 +24,11 @@
 					li.append(textDom)
 					ul.append(li);
 				});
+				window.endLoading();
 			})
 			.catch(function(error) {
-				console.log('Request failed', error);
+				window.printAws(error);
+				window.endLoading();
 			});
 	}
 

@@ -13,7 +13,7 @@ body, body * {
 	padding: 0px;
 }
 
-body, body > * {
+body, body>* {
 	overflow-x: hidden;
 }
 
@@ -175,6 +175,21 @@ form>*.w-100, .vertical>*.w-100 {
 .gallery>* {
 	margin-left: 20px;
 	margin-bottom: 20px;
+}
+
+.load {
+	position: fixed;
+	display: flex;
+	top: 93px;
+	right: 0;
+	width: 266px;
+	height: 50px;
+	background-color: #45cfdd;
+	align-items: center;
+	align-content: center;
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
 }
 
 .none {

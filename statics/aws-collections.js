@@ -28,6 +28,7 @@
 
 	function listCollections() {
 
+		window.startLoading();
 		fetch("/pia/upload/logic/bucket-list-collections.php", {
 			method: 'GET',
 		})
@@ -35,8 +36,7 @@
 				return response.json();
 			})
 			.then(function(data) {
-				console.log('Request succeeded with JSON response', data);
-				printAws(data.collections);
+				window.printAws(data);
 
 				var ul = jQuery(".collections ul");
 				if (data.collections.length > 0) {
@@ -46,9 +46,11 @@
 				data.collections.forEach(function(collection) {
 					createCollectionBotton(collection, ul);
 				});
+				window.endLoading();
 			})
 			.catch(function(error) {
-				console.log('Request failed', error);
+				window.printAws(error);
+				window.endLoading();
 			});
 	}
 
@@ -56,6 +58,7 @@
 
 		var imageName = window.imgToWork.attr('class').split(" ")[0];
 
+		window.startLoading();
 		fetch("/pia/upload/logic/bucket-index.php?toanalyze=" + imageName + "&collection-to=" + collectionName, {
 			method: 'GET',
 		})
@@ -63,12 +66,12 @@
 				return response.json();
 			})
 			.then(function(data) {
-				console.log('Request succeeded with JSON response', data);
-				printAws(data.collections);
+				window.printAws(data);
 				printAws("Contenido indexado con exito");
 			})
 			.catch(function(error) {
-				console.log('Request failed', error);
+				window.printAws(error);
+				window.endLoading();
 			});
 	}
 
@@ -76,6 +79,7 @@
 
 		var imageName = window.imgToWork.attr('class').split(" ")[0];
 
+		window.startLoading();
 		fetch("/pia/upload/logic/bucket-search.php?toanalyze=" + imageName + "&collection-to=" + collectionName + "&accurancity=" + accurancity, {
 			method: 'GET',
 		})
@@ -83,8 +87,7 @@
 				return response.json();
 			})
 			.then(function(data) {
-				console.log('Request succeeded with JSON response', data);
-				printAws(data.matches);
+				window.printAws(data);
 
 				if (data.ok == true && data.urls.length > 0) {
 
@@ -128,14 +131,17 @@
 				} else {
 					printAws("No hay coincidencias");
 				}
+				window.endLoading();
 			})
 			.catch(function(error) {
-				console.log('Request failed', error);
+				window.printAws(error);
+				window.endLoading();
 			});
 	}
 
 	function removeCollection(collectionName) {
 
+		window.startLoading();
 		fetch("/pia/upload/logic/bucket-delete-collection.php?collection-to=" + collectionName, {
 			method: 'GET',
 		})
@@ -143,8 +149,7 @@
 				return response.json();
 			})
 			.then(function(data) {
-				console.log('Request succeeded with JSON response', data);
-				printAws(data.collections);
+				window.printAws(data);
 
 				var ul = jQuery(".collections ul");
 				ul.find("li").remove();
@@ -152,14 +157,17 @@
 				data.collections.forEach(function(collection) {
 					createCollectionBotton(collection, ul);
 				});
+				window.endLoading();
 			})
 			.catch(function(error) {
-				console.log('Request failed', error);
+				window.printAws(error);
+				window.endLoading();
 			});
 	}
 
 	function createCollection(collectionName) {
 
+		window.startLoading();
 		fetch("/pia/upload/logic/bucket-create-collection.php?collection-to=" + collectionName, {
 			method: 'GET',
 		})
@@ -167,8 +175,7 @@
 				return response.json();
 			})
 			.then(function(data) {
-				console.log('Request succeeded with JSON response', data);
-				printAws(data.collections);
+				window.printAws(data);
 
 				var ul = jQuery(".collections ul");
 				ul.find("li").remove();
@@ -176,9 +183,11 @@
 				data.collections.forEach(function(collection) {
 					createCollectionBotton(collection, ul);
 				});
+				window.endLoading();
 			})
 			.catch(function(error) {
-				console.log('Request failed', error);
+				window.printAws(error);
+				window.endLoading();
 			});
 	}
 

@@ -88,7 +88,7 @@ class Util {
             $coords[$clave]['width'] = $coords[$clave]['width'] * $wor;
         }
 
-        for ($i = 1; $i<30; $i++) {
+        for ($i = 1; $i<10; $i++) {
              imagefilter($image1, IMG_FILTER_GAUSSIAN_BLUR);
         }
         

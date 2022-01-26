@@ -3,6 +3,7 @@
 
 	function searchCelebrities(imageDimensions, imageName) {
 
+		window.startLoading();
 		fetch("/pia/upload/logic/bucket-search-celebrity.php?toanalyze=" + imageName, {
 			method: 'GET',
 		})
@@ -10,8 +11,7 @@
 				return response.json();
 			})
 			.then(function(data) {
-				console.log('Request succeeded with JSON response', data);
-				printAws(data.celebrities);
+				window.printAws(data);
 
 				var ul = jQuery(".celebrities ul");
 				if (data.celebrities.length > 0) {
@@ -54,6 +54,7 @@
 
 					window.count = window.count + 1;
 				});
+				window.endLoading();
 			})
 			.catch(function(error) {
 				console.log('Request failed', error);
