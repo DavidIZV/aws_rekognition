@@ -168,6 +168,8 @@
 
 	function createCollection(collectionName) {
 
+		collectionName = collectionName.replace(' ', '_');
+
 		window.startLoading();
 		fetch("/pia/upload/logic/bucket-create-collection.php?collection-to=" + collectionName, {
 			method: 'GET',
