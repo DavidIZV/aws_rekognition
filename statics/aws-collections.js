@@ -68,6 +68,7 @@
 			.then(function(data) {
 				window.printAws(data);
 				printAws("Contenido indexado con exito");
+				window.endLoading();
 			})
 			.catch(function(error) {
 				window.printAws(error);
