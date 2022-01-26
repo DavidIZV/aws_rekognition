@@ -16,23 +16,43 @@
 				var ul = jQuery(".celebrities ul");
 				if (data.celebrities.length > 0) {
 					ul.find("li").remove();
+
+					var img1 = $('<img class="img-700-max">');
+					var urlParts = $('#myimage')[0].src.split('/');
+					var url = urlParts[urlParts.length - 1];
+					img1.attr('src', "./../originales/" + url);
+					var id = url + window.count;
+					img1.attr('id', id);
+					img1.appendTo('.newImage');
+
+					Jcrop.load(id).then(img => {
+						window.jcpCelebrities = Jcrop.attach(img, { multi: true });
+						window.jcpCelebrities.setOptions({ shadeOpacity: 0.2 });
+						window.jcpCelebrities.focus();
+						Jcrop.Rect.sizeOf(window.jcpCelebrities.el);
+					});
 				}
 
 				data.celebrities.forEach(function(celebrity) {
-					var t = imageDimensions.height * celebrity.face.top;
-					var l = imageDimensions.width * celebrity.face.left;
-					var h = imageDimensions.height * celebrity.face.height;
-					var w = imageDimensions.width * celebrity.face.width;
-					const rect = Jcrop.Rect.create(l, t, w, h);
-					const options = {
-						shadeOpacity: 0.00001
-					};
-					jcpCelebrities.newWidget(rect, options).addClass('celebrity-people');
 
-					var li = jQuery("<li class='w-100'></li>");
-					var link = jQuery("<a href='https://" + celebrity.url + "'>" + celebrity.name + "</a>");
-					li.append(link)
-					ul.append(li);
+					setTimeout(function() {
+
+						var t = imageDimensions.height * celebrity.face.top;
+						var l = imageDimensions.width * celebrity.face.left;
+						var h = imageDimensions.height * celebrity.face.height;
+						var w = imageDimensions.width * celebrity.face.width;
+						const rect = Jcrop.Rect.create(l, t, w, h);
+						const options = {};
+						jcpCelebrities.newWidget(rect, options).addClass('celebrity-people');
+
+						var li = jQuery("<li class='w-100'></li>");
+						var link = jQuery("<a href='https://" + celebrity.url + "'>" + celebrity.name + "</a>");
+						li.append(link)
+						ul.append(li);
+
+					}, 1000);
+
+					window.count = window.count + 1;
 				});
 			})
 			.catch(function(error) {
@@ -40,31 +60,10 @@
 			});
 	}
 
-	function hideCelebrities() {
-
-		jcpCelebrities.crops.forEach(function(value) {
-			if (value.hasClass('none')) {
-				value.removeClass('none');
-			} else {
-				value.addClass('none');
-			}
-		});
-	}
-
-	let jcpCelebrities;
-	Jcrop.load('myimage').then(img => {
-		jcpCelebrities = Jcrop.attach(img, { multi: true });
-		jcpCelebrities.setOptions({ shadeOpacity: 0.00001 });
-		jcpCelebrities.focus();
-		Jcrop.Rect.sizeOf(jcpCelebrities.el);
-	});
-
 	var imageName = window.imgToWork.attr('class').split(" ")[0];
 
-	searchCelebrities(window.imageDimensions, imageName);
-
 	jQuery(".btn-to-hide-celebrities").click(function() {
-		hideCelebrities();
+		searchCelebrities(window.imageDimensions, imageName);
 	});
 
 })();

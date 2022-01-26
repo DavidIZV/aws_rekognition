@@ -26,7 +26,7 @@ $imageName = Util::getParam("toanalyze");
 				<button type="button" class="btn btn-to-blurr">Blur this image</button>
 				<button type="button" class="btn btn-to-blurr-saved">Blur saved</button>
 				<button type="button" class="btn btn-to-delete">Delete active box</button>
-				<button type="button" class="btn btn-to-hide-celebrities">Hide or show celebrity marks</button>
+				<button type="button" class="btn btn-to-hide-celebrities">Search celebrity</button>
 				<input type="text" class="btn btn-to-write" onclick="return false;" placeholder="Write collection name" />
 				<button type="button" class="btn btn-to-create-collection">Create collection</button>
 			</div>

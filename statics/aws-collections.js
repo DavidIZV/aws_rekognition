@@ -116,9 +116,7 @@
 									var w = img2[0].width * match.Face.BoundingBox.Width;
 
 									const rect = Jcrop.Rect.create(l, t, w, h);
-									const options = {
-										shadeOpacity: 0.00001
-									};
+									const options = {};
 									window.jcpCollections.newWidget(rect, options).addClass('collection-people');
 
 								}, 1000);
